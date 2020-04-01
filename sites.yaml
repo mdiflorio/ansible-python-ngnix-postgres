@@ -2,3 +2,4 @@
   become: yes
   tasks:
   - include: playbooks/prerequisites.yaml
+  - include: playbooks/postgres.yaml

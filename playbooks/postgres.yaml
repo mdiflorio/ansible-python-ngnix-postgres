@@ -1,0 +1,29 @@
+
+- name: Install Postgres
+  apt:
+    name:
+      - postgresql 
+      - postgresql-contrib
+      - postgresql-client
+      - libpq-dev
+    state: present
+        
+- name: Create postgres database
+  become_user: postgres
+  become: true
+  postgresql_db:
+    encoding: "UTF-8"
+    name: "devops2"
+    template: "template1"
+
+- name: Create user and grant permissions on database.
+  become_user: postgres
+  become: true
+  postgresql_user:
+    db: "devops2"
+    name: devops2-user"
+    encrypted: true
+    password: "md5{{ ['devops2-user', 'devops2']|join('')|hash('md5') }}"
+    priv: ALL
+    role_attr_flags: SUPERUSER
+  no_log: true
