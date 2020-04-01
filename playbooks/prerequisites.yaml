@@ -1,0 +1,8 @@
+
+- name: Install python
+  apt:
+    update_cache: yes
+    name: "{{item}}"
+  loop:
+    - python3
+        
