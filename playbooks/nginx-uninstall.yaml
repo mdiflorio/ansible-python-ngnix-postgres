@@ -1,0 +1,6 @@
+- name: Uninstall nginx
+  service:
+      name: nginx
+      state: stopped
+- name: ensure nginx is not installed
+  apt: name=nginx state=absent
