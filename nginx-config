@@ -3,6 +3,6 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/ubuntu/flask-hello-world/flask-hello-world.sock;
+        proxy_pass http://unix:/home/ubuntu/{{ app_name }}/{{ app_name }}.sock;
     }
 }

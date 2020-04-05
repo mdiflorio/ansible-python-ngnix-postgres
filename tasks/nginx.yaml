@@ -6,13 +6,13 @@
   become: yes
   become_method: sudo
 - name: Copy gunicorn service
-  copy:
+  template:
     src: gunicorn-service
-    dest: /etc/systemd/system/flask-hello-world.service
+    dest: "/etc/systemd/system/{{ app_name }}.service"
 
 - name: Start gunicorn app service on boot
   systemd: 
-    name: flask-hello-world
+    name: "{{ app_name }}"
     daemon_reload: yes 
     state: restarted
     enabled: yes
@@ -20,7 +20,7 @@
 - name: Copy nginx site config file
   template:
     src: nginx-config
-    dest: /etc/nginx/sites-available/flask-hello-world
+    dest: "/etc/nginx/sites-available/{{ app_name }}"
 
 - name: Remove default nginx site config
   file:  
@@ -29,7 +29,7 @@
 
 - name: Enable nginx site
   file:
-    src: /etc/nginx/sites-available/flask-hello-world
+    src: "/etc/nginx/sites-available/{{ app_name }}"
     dest: /etc/nginx/sites-enabled/default
     state: link
     force: yes

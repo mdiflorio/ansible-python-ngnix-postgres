@@ -1,13 +1,14 @@
 
 
 - name: Clone app repo
-  become_user: ubuntu
+  become_user: "{{ ansible_user }}"
   git:
-    repo: 'https://github.com/mierz00/flask-hello-world.git'
-    dest: /home/ubuntu/flask-hello-world
+    repo: 'https://github.com/{{ git_user }}/{{ app_name }}.git'
+    dest: "/home/{{ ansible_user }}/{{ app_name }}"
     update: yes 
+    version: "{{ repo_branch }}"
 - name: Install python in a virtualenv
   pip:
-    requirements: /home/ubuntu/flask-hello-world/requirements.txt
-    virtualenv: /home/ubuntu/flask-hello-world/env
+    requirements: "/home/{{ ansible_user }}/{{ app_name }}/requirements.txt"
+    virtualenv: "/home/{{ ansible_user }}/{{ app_name }}/env"
     virtualenv_python: python3.6.9
