@@ -2,6 +2,7 @@
   become: yes
   tasks:
   # - include: tasks/prerequisites.yaml
+  - include: tasks/get-application.yaml
   # - include: tasks/postgres.yaml
   # - include: tasks/nginx.yaml
-  - include: tasks/nginx-uninstall.yaml
+  # - include: tasks/nginx-uninstall.yaml
