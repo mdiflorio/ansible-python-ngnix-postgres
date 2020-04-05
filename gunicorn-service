@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve flask-hello-world
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/flask-hello-world
+Environment="PATH=/home/ubuntu/flask-hello-world/env/bin"
+ExecStart=/home/ubuntu/flask-hello-world/env/bin/gunicorn --workers 3 --bind unix:flask-hello-world.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target

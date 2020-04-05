@@ -1,33 +1,37 @@
-    - name: ensure nginx is at the latest version
-      apt: name=nginx state=latest
+- name: ensure nginx is at the latest version
+  apt: name=nginx state=latest
 
-      become: yes
-    - name: start nginx
-      service:
-          name: nginx
-          state: started
+  become: yes
+  become_method: sudo
+- name: Copy gunicorn service
+  copy:
+    src: gunicorn-service
+    dest: /etc/systemd/system/flask-hello-world.service
 
-      become: yes
-    - name: Copy nginx config to the server
-      copy:
-        src: "{{ inventory_dir }}/example_site/config/static_site.cfg"
-        dest: /etc/nginx/sites-available/static_site.cfg
+  become: yes
+- name: Start gunicorn app service on boot
+  systemd: name=flask-hello-world.service state=restarted enabled=yes
 
-      become: yes
-    - name: Create symlink
-      file:
-        src: /etc/nginx/sites-available/static_site.cfg
-        dest: /etc/nginx/sites-enabled/default
-        state: link
+- name: Copy nginx site config file
+  template:
+    src: nginx-config
+    dest: /etc/nginx/sites-available/flask-hello-world
 
-      become: yes
-    - name: Copy the contents of the web site
-      copy:
-        src: "{{ inventory_dir }}/example_site/src/"
-        dest: /home/sites/static-site
+- name: remove default nginx site config
+  file: path=/etc/nginx/sites-enabled/default state=absent
+# - command: mv /etc/nginx/sites-enabled/default /tmp/nginx.sites-enabled.default
 
-    - name: Restart nginx
-      service:
-        name: nginx
-        state: restarted
-      become: yes
+- name: Enable nginx site
+  file:
+    src: /etc/nginx/sites-available/flask-hello-world
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+    force: yes
+
+- name: Restart nginx
+  systemd: name=nginx state=restarted enabled=yes
+
+- name: Open firewall for nginx
+  ufw:
+    rule: allow
+    name: Nginx Full
