@@ -1,7 +1,9 @@
 
+
 - name: Clone app repo
+  become_user: ubuntu
   git:
-    repo: 'https://github.com/render-examples/flask-hello-world.git'
+    repo: 'https://github.com/mierz00/flask-hello-world.git'
     dest: /home/ubuntu/flask-hello-world
     update: yes  # Update the repo if required
 - name: install python in a virtualenv
@@ -9,6 +11,3 @@
     requirements: /home/ubuntu/flask-hello-world/requirements.txt
     virtualenv: /home/ubuntu/flask-hello-world/env
     virtualenv_python: python3.6.9
-
-
-

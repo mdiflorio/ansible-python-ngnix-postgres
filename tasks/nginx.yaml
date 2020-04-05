@@ -8,9 +8,12 @@
     src: gunicorn-service
     dest: /etc/systemd/system/flask-hello-world.service
 
-  become: yes
 - name: Start gunicorn app service on boot
-  systemd: name=flask-hello-world.service state=restarted enabled=yes
+  systemd: 
+    name: flask-hello-world
+    daemon_reload: yes 
+    state: restarted
+    enabled: yes
 
 - name: Copy nginx site config file
   template:
@@ -29,9 +32,7 @@
     force: yes
 
 - name: Restart nginx
-  systemd: name=nginx state=restarted enabled=yes
-
-- name: Open firewall for nginx
-  ufw:
-    rule: allow
-    name: Nginx Full
+  service:
+    name: nginx
+    state: restarted
+  become: yes
