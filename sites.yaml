@@ -1,7 +1,7 @@
 - hosts: '{{ target }}'
   become: yes
   tasks:
-  # - include: playbooks/prerequisites.yaml
-  # - include: playbooks/postgres.yaml
-  - include: playbooks/nginx.yaml
-  # - include: playbooks/nginx-uninstall.yaml
+  # - include: tasks/prerequisites.yaml
+  # - include: tasks/postgres.yaml
+  # - include: tasks/nginx.yaml
+  - include: tasks/nginx-uninstall.yaml
