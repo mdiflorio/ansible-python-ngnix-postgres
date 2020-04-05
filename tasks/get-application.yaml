@@ -5,8 +5,8 @@
   git:
     repo: 'https://github.com/mierz00/flask-hello-world.git'
     dest: /home/ubuntu/flask-hello-world
-    update: yes  # Update the repo if required
-- name: install python in a virtualenv
+    update: yes 
+- name: Install python in a virtualenv
   pip:
     requirements: /home/ubuntu/flask-hello-world/requirements.txt
     virtualenv: /home/ubuntu/flask-hello-world/env

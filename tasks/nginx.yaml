@@ -1,5 +1,7 @@
 - name: ensure nginx is at the latest version
-  apt: name=nginx state=latest
+  apt: 
+    name: nginx 
+    state: latest
 
   become: yes
   become_method: sudo
@@ -20,9 +22,10 @@
     src: nginx-config
     dest: /etc/nginx/sites-available/flask-hello-world
 
-- name: remove default nginx site config
-  file: path=/etc/nginx/sites-enabled/default state=absent
-# - command: mv /etc/nginx/sites-enabled/default /tmp/nginx.sites-enabled.default
+- name: Remove default nginx site config
+  file:  
+    path: /etc/nginx/sites-enabled/default 
+    state: absent
 
 - name: Enable nginx site
   file:
