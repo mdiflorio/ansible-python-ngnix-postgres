@@ -1,0 +1,6 @@
+
+
+- name: Check if Postgres has been started.
+  service:
+    name: postgresql
+    state: started
