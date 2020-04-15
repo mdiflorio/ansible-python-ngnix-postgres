@@ -1,9 +1,9 @@
 - hosts: '{{ target }}'
   become: yes
-  tasks:
-  - include: tasks/test.yaml
-  # - include: tasks/prerequisites.yaml
-  # - include: tasks/get-application.yaml
-  # # - include: tasks/postgres.yaml
-  # - include: tasks/nginx.yaml
-  # - include: tasks/nginx-uninstall.yaml
+  pre_tasks: 
+    # - include: tasks/prerequisites.yaml
+    # - include: tasks/nginx-uninstall.yaml
+  roles:
+    # - postgres
+    # - update-app
+    - nginx

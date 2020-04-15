@@ -1,4 +1,5 @@
-
+---
+# tasks file for update-app
 
 - name: Clone app repo
   become_user: "{{ ansible_user }}"
@@ -7,7 +8,8 @@
     dest: "/home/{{ ansible_user }}/{{ app_name }}"
     update: yes 
     version: "{{ repo_branch }}"
-- name: Install python in a virtualenv
+
+- name: Install python packages in a virtualenv
   pip:
     requirements: "/home/{{ ansible_user }}/{{ app_name }}/requirements.txt"
     virtualenv: "/home/{{ ansible_user }}/{{ app_name }}/env"

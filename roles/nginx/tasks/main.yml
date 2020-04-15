@@ -1,3 +1,6 @@
+---
+# tasks file for nginx
+
 - name: ensure nginx is at the latest version
   apt: 
     name: nginx 
@@ -7,7 +10,7 @@
   become_method: sudo
 - name: Copy gunicorn service
   template:
-    src: ./setup/gunicorn-service
+    src: ./templates/gunicorn-service
     dest: "/etc/systemd/system/{{ app_name }}.service"
 
 - name: Start gunicorn app service on boot
@@ -19,7 +22,7 @@
 
 - name: Copy nginx site config file
   template:
-    src: ./setup/nginx-config
+    src: ./templates/nginx-config
     dest: "/etc/nginx/sites-available/{{ app_name }}"
 
 - name: Remove default nginx site config
@@ -33,9 +36,4 @@
     dest: /etc/nginx/sites-enabled/default
     state: link
     force: yes
-
-- name: Restart nginx
-  service:
-    name: nginx
-    state: restarted
-  become: yes
+  notify: Restart nginx
