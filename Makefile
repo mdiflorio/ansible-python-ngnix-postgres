@@ -9,7 +9,7 @@ deploy-all:
 	ansible-playbook -i hosts.yaml deploy.yaml --extra-vars "target=all"
 
 test-prod: 
-	curl http://192.168.140.19/
+	curl http://192.168.140.20/
 
 test-preprod: 
-	curl http://192.168.140.78/
+	curl http://192.168.140.50/
