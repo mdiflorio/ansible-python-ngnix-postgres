@@ -1,12 +1,4 @@
 
-- name: Change file ownership, group and permissions
-  file:
-    path: '/var/www/{{ app_name }}'
-    owner: "{{ ansible_user }}"
-    group: www-data
-    recurse: yes
-
-
 - name: Get latest release version for production.
   shell: "git ls-remote --tags https://github.com/{{ git_user }}/{{ app_name }}.git | cut -d/ -f3- | sort -t. -nk1,2 -k3 | awk '/^[^{]*$/{version=$1}END{print version}'"
   register: latest_tag

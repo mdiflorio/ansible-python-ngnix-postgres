@@ -20,6 +20,5 @@
   file:
     src: "/var/www/{{ app_name }}/releases/latest" 
     dest: "/var/www/{{ app_name }}/current"
-    owner: ansible_user
-    group: ansible_user
     state: link    
+
