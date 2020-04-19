@@ -5,9 +5,9 @@ After=network.target
 [Service]
 User={{ ansible_user }}
 Group=www-data
-WorkingDirectory=/home/{{ ansible_user }}/{{ app_name }}
-Environment="PATH=/home/{{ ansible_user }}/{{ app_name }}/env/bin"
-ExecStart=/home/{{ ansible_user }}/{{ app_name }}/env/bin/gunicorn --workers 3 --bind unix:{{ app_name }}.sock -m 007 wsgi:app
+WorkingDirectory=/var/www/{{ app_name }}/current
+Environment="PATH=/var/www/{{ app_name }}/current/env/bin"
+ExecStart=/var/www/{{ app_name }}/current/env/bin/gunicorn --workers 3 --log-level debug --error-logfile /tmp/error.log --bind unix:{{ app_name }}.sock -m 007 wsgi:app
 
 [Install]
 WantedBy=multi-user.target

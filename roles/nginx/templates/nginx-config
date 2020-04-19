@@ -3,6 +3,6 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/ubuntu/{{ app_name }}/{{ app_name }}.sock;
+        proxy_pass http://unix:/var/www/{{ app_name }}/current/{{ app_name }}.sock;
     }
 }

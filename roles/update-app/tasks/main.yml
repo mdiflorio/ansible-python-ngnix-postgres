@@ -1,16 +1,10 @@
 ---
 # tasks file for update-app
 
-- name: Clone app repo
-  become_user: "{{ ansible_user }}"
-  git:
-    repo: 'https://github.com/{{ git_user }}/{{ app_name }}.git'
-    dest: "/home/{{ ansible_user }}/{{ app_name }}"
-    update: yes 
-    version: "{{ repo_branch }}"
-
-- name: Install python packages in a virtualenv
-  pip:
-    requirements: "/home/{{ ansible_user }}/{{ app_name }}/requirements.txt"
-    virtualenv: "/home/{{ ansible_user }}/{{ app_name }}/env"
-    virtualenv_python: python3.6.9
+- name: Update application prod.
+  import_tasks: production.yml
+  when: repo_branch == "production"
+  
+- name: Update application preprod.
+  import_tasks: preproduction.yml
+  when: repo_branch == "preproduction"
