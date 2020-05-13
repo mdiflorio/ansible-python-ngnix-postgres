@@ -47,7 +47,7 @@ Keep in mind, I used variables to target specific machines. So if you want to ru
 
 The project has been set up so that it does 4 things. 
 
-1. Install all prerequisites such as Python, Pip and VirtualEnv. VirtualEnv is used to create a virtual environment that allows us to install Python packages that are required to run the Flask application.
+1. Install all prerequisites such as Python, Pip and VirtualEnv. VirtualEnv is used to create a virtual environment that allows us to install Python packages that are required to run the Flask application. The application can be found [here](https://github.com/mierz00/flask-hello-world) which is just a fork of a hello-world flask application. I have created two branches a preprod and a prod branch, there is also a list of releases.
 
 
 2. Installation and configuration of PostGreSQL. This installation is quite standard and simply creates some new users to the database.
@@ -56,7 +56,7 @@ The project has been set up so that it does 4 things.
 
     - Production server
         - Get the latest release number.
-        - Git clone the latest release of the application into '/var/www/{{ app_name }}/releases/{{ latest_tag }}'
+        - Git clone the latest release of the application into '/var/www/{{ app_name }}/releases/{{ latest_tag }}' This way, we have atomic deployments with a coherent naming convention for each folder.
         - Install all the required packages inside the virtual environment.
         - Change the symbolic link so that Nginx can know which application to serve.
 
