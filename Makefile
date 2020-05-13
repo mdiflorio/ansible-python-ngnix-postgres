@@ -13,3 +13,6 @@ test-prod:
 
 test-preprod: 
 	curl http://192.168.140.50/
+
+show-tags:
+	ansible-playbook -i hosts.yaml deploy.yaml --extra-vars "target=all" --list-tags

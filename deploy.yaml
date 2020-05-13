@@ -2,8 +2,10 @@
   become: yes
   pre_tasks: 
     - include: tasks/prerequisites.yaml
+      tags: 
+        - prerequisites
     # - include: tasks/nginx-uninstall.yaml
   roles:
-    # - postgres
-    - update-app
-    - nginx
+    - {role: 'postgres', tags: 'postgres'}
+    - {role: 'update-app', tags: 'update-app'}
+    - {role: 'nginx', tags: 'nginx'}
