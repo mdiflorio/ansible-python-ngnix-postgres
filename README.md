@@ -56,7 +56,7 @@ The project has been set up so that it does 4 things.
 
     - Production server
         - Get the latest release number.
-        - Git clone the latest release of the application into '/var/www/{{ app_name }}/releases/{{ latest_tag }}' This way, we have atomic deployments with a coherent naming convention for each folder.
+        - Git clone the latest release of the application into `/var/www/{{ app_name }}/releases/{{ latest_tag }}` This way, we have atomic deployments with a coherent naming convention for each folder.
         - Install all the required packages inside the virtual environment.
         - Change the symbolic link so that Nginx can know which application to serve.
 
