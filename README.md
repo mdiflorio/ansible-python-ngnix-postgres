@@ -58,12 +58,10 @@ The project has been set up so that it does 4 things.
 3) Cloning or pulling the Flask application onto the server. This is done in two different ways depending on which server we're on.
 
     - Production server
-
         - Get the latest release number.
         - Git clone the latest release of the application into `/var/www/{{ app_name }}/releases/{{ latest_tag }}` This way, we have atomic deployments with a coherent naming convention for each folder.
         - Install all the required packages inside the virtual environment.
         - Change the symbolic link so that Nginx can know which application to serve.
-
     - Preproduction server
 
         - Clone or update the latest release from the branch pre-prod in the repo.
@@ -73,4 +71,5 @@ The project has been set up so that it does 4 things.
     - The reason why I did things this way is so that the production server always uses the latest release and that the preproduction takes the latest update from the preprod branch. This way we can make quick modifications to the preproduction if required and we can be sure that the production server never adds anything but the latest release. In the case of a mistake, we can always change the symbolic link on the production server and downgrade to an earlier version of the application.
 
 4. Installation and configuration of Nginx and Gunicorn.
+
     - Nginx is installed and the configured using templates. These templates contain the app_name. We then run the Gunicorn server to launch the Flask application. This server creates a .sock file which is used by Nginx to expose the server to the outside world on the port 80. That way, we can access the application from anywhere.
