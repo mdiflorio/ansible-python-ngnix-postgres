@@ -6,6 +6,11 @@
       update: yes
       version: "{{ repo_branch }}"
 
+- name: Copy welcome message to folder
+  template:
+      src: ./templates/message
+      dest: "/var/www/{{ app_name }}/releases/latest/message.py"
+
 - name: Install python packages in a virtualenv
   pip:
       requirements: "/var/www/{{ app_name }}/releases/latest/requirements.txt"

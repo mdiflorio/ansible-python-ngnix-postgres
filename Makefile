@@ -1,10 +1,10 @@
 
-deploy-test-prod: deploy-prod test-prod test-prod-db
+deploy-test-prod: deploy-prod test-prod 
 
 deploy-prod:
 	ansible-playbook -i hosts.yaml deploy.yaml --extra-vars "target=prod"
 
-deploy-test-preprod: deploy-preprod test-preprod test-preprod-db
+deploy-test-preprod: deploy-preprod test-preprod 
 
 deploy-preprod:
 	ansible-playbook -i hosts.yaml deploy.yaml --extra-vars "target=preprod"
