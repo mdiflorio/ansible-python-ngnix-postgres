@@ -1,11 +1,11 @@
-- hosts: '{{ target }}'
+- hosts: "{{ target }}"
   become: yes
-  pre_tasks: 
-    - include: tasks/prerequisites.yaml
-      tags: 
-        - prerequisites
-    # - include: tasks/nginx-uninstall.yaml
+  pre_tasks:
+      - include: tasks/prerequisites.yaml
+        tags:
+            - prerequisites
+      # - include: tasks/nginx-uninstall.yaml
   roles:
-    - {role: 'postgres', tags: 'postgres'}
-    - {role: 'update-app', tags: 'update-app'}
-    - {role: 'nginx', tags: 'nginx'}
+      - { role: "postgres", tags: "postgres" }
+      - { role: "update-app", tags: "update-app" }
+      - { role: "nginx", tags: "nginx" }
