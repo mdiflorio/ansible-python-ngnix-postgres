@@ -15,10 +15,10 @@ deploy-all:
 	ansible-playbook -i hosts.yaml deploy.yaml --extra-vars "target=all"
 
 test-prod: 
-	curl http://192.168.140.72/
+	curl http://192.168.140.50/
 
 test-prod-db:
-	curl http://192.168.140.72/test-db
+	curl http://192.168.140.50/test-db
 
 test-preprod: 
 	curl http://192.168.140.51/

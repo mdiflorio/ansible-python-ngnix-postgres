@@ -1,7 +1,7 @@
 all:
     hosts:
         prod:
-            ansible_host: 192.168.140.72
+            ansible_host: 192.168.140.50
             ansible_port: 22
             ansible_user: ubuntu
             ansible_ssh_extra_args: "-o ForwardAgent=yes -o IdentitiesOnly=yes"
