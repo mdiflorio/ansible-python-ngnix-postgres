@@ -2,38 +2,40 @@
 # tasks file for nginx
 
 - name: ensure nginx is at the latest version
-  apt: 
-    name: nginx 
-    state: latest
+  apt:
+      name: nginx
+      state: latest
 
   become: yes
   become_method: sudo
 - name: Copy gunicorn service
   template:
-    src: ./templates/gunicorn-service
-    dest: "/etc/systemd/system/{{ app_name }}.service"
+      src: ./templates/gunicorn-service
+      dest: "/etc/systemd/system/{{ app_name }}.service"
 
 - name: Start gunicorn app service on boot
-  systemd: 
-    name: "{{ app_name }}"
-    daemon_reload: yes 
-    state: restarted
-    enabled: yes
+  environment:
+      WELCOME_MESSAGE: "{{ welcome_message }}"
+  systemd:
+      name: "{{ app_name }}"
+      daemon_reload: yes
+      state: restarted
+      enabled: yes
 
 - name: Copy nginx site config file
   template:
-    src: ./templates/nginx-config
-    dest: "/etc/nginx/sites-available/{{ app_name }}"
+      src: ./templates/nginx-config
+      dest: "/etc/nginx/sites-available/{{ app_name }}"
 
 - name: Remove default nginx site config
-  file:  
-    path: /etc/nginx/sites-enabled/default 
-    state: absent
+  file:
+      path: /etc/nginx/sites-enabled/default
+      state: absent
 
 - name: Enable nginx site
   file:
-    src: "/etc/nginx/sites-available/{{ app_name }}"
-    dest: /etc/nginx/sites-enabled/default
-    state: link
-    force: yes
+      src: "/etc/nginx/sites-available/{{ app_name }}"
+      dest: /etc/nginx/sites-enabled/default
+      state: link
+      force: yes
   notify: Restart nginx

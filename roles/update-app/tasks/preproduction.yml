@@ -1,24 +1,19 @@
-
-
 - name: Clone app repo into releases
   git:
-    repo: 'https://github.com/{{ git_user }}/{{ app_name }}.git'
-    dest: '/var/www/{{ app_name }}/releases/latest'
-    depth: 1
-    update: yes
-    version: "{{ repo_branch }}"
-
+      repo: "https://github.com/{{ git_user }}/{{ app_name }}.git"
+      dest: "/var/www/{{ app_name }}/releases/latest"
+      depth: 1
+      update: yes
+      version: "{{ repo_branch }}"
 
 - name: Install python packages in a virtualenv
   pip:
-    requirements: "/var/www/{{ app_name }}/releases/latest/requirements.txt"
-    virtualenv: "/var/www/{{ app_name }}/releases/latest/env"
-    virtualenv_python: python3.6.9
-
+      requirements: "/var/www/{{ app_name }}/releases/latest/requirements.txt"
+      virtualenv: "/var/www/{{ app_name }}/releases/latest/env"
+      virtualenv_python: python3.6.9
 
 - name: Create symbolic link to current
   file:
-    src: "/var/www/{{ app_name }}/releases/latest" 
-    dest: "/var/www/{{ app_name }}/current"
-    state: link    
-
+      src: "/var/www/{{ app_name }}/releases/latest"
+      dest: "/var/www/{{ app_name }}/current"
+      state: link
