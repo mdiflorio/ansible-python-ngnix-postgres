@@ -52,6 +52,8 @@ If you want to change the IP addresses of the hosts. You need to modify the Make
 
 To run the project you can select `deploy-test-prod` or `deploy-test-preprod` or `deploy-test-all`. These commands will run the deployment and then run a little test.
 
+&#x26a0;&#xfe0f; **If the task [Kill apt processes and correct dpkg] fails, rerun the deployment command.**
+
 Alternatively, each of the roles has tags associated so that you can run each role or task seperately. The task prerequisites needs to be run before the roles.
 
 If you want to see all the possible tags, run the command `show-tags`.

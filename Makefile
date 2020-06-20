@@ -15,16 +15,16 @@ deploy-all:
 	ansible-playbook -i hosts.yaml deploy.yaml --extra-vars "target=all"
 
 test-prod: 
-	curl http://192.168.140.50/
+	curl http://192.168.140.59/
 
 test-prod-db:
-	curl http://192.168.140.50/test-db
+	curl http://192.168.140.59/test-db
 
 test-preprod: 
-	curl http://192.168.140.51/
+	curl http://192.168.140.7/
 
 test-preprod-db:
-	curl http://192.168.140.51/test-db
+	curl http://192.168.140.7/test-db
 
 show-tags:
 	ansible-playbook -i hosts.yaml deploy.yaml --extra-vars "target=all" --list-tags
