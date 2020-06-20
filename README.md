@@ -20,6 +20,12 @@ The ssh key is located within the project directory. p1925518-key.pem
 
 All the roles were created by me, I didn't use any roles from Ansible-Galaxy.
 
+### Serveur
+
+**OS:** Ubuntu-18.04-x86_64  
+**Volume Size:** 5 GB  
+**Type:** tiny.m3
+
 ### La liste des commandes à utiliser.
 
 The Makefile contains the following commands.
