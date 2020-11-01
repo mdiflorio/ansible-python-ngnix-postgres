@@ -1,14 +1,7 @@
-# LP - DevOps - 2020 - ansible - Grp2 - Python - 1
+# Setup server with Ansible, Flask, nginx and postgres.
 
-### Liste des étudiants.
 
-DI FLORIO Madhava - p1925518
-
-### Les clés ssh de connexion:
-
-The ssh key is located within the project directory. p1925518-key.pem
-
-### Les technologies utilisées:
+### Technologies:
 
 -   PostgreSQL
 -   Flask for the web app.
@@ -16,11 +9,7 @@ The ssh key is located within the project directory. p1925518-key.pem
 -   Nginx for the web sever/reverse proxy.
 -   Git to get the project files for the Flask application.
 
-### La liste des roles (si utilisés)
-
-All the roles were created by me, I didn't use any roles from Ansible-Galaxy.
-
-### Serveur
+### Server
 
 **OS:** Ubuntu-18.04-x86_64  
 **Volume Size:** 5 GB  
@@ -60,7 +49,7 @@ If you want to see all the possible tags, run the command `show-tags`.
 
 Keep in mind, I used variables to target specific machines. So if you want to run individual tasks using the tags you need to add `--extra-vars "target=all"` to your ansible command. The target can be `all`, `prod` or `preprod`. If this isn't clear, you can see examples of this inside the Makefile.
 
-### Une présentation de l'architecture mise en place
+### Architecture
 
 The project has been set up so that it does 5 things.
 
